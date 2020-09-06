@@ -1222,12 +1222,14 @@ executors:
   docker-python3-java11:
     working_directory: ~/projects
     docker:
-      - image: circleci/python@sha256:e1c98a85c5ee62ac52a2779fe5abe2677f021c8e3158e4fb2d569c7b9c6ac073
+      # - image: circleci/python@sha256:e1c98a85c5ee62ac52a2779fe5abe2677f021c8e3158e4fb2d569c7b9c6ac073
+      - image: circleci/python:3.8.5-node-browsers
 
   docker-py3-java11-postgres:
     working_directory: ~/projects
     docker:
-      - image: circleci/python@sha256:e1c98a85c5ee62ac52a2779fe5abe2677f021c8e3158e4fb2d569c7b9c6ac073
+      # - image: circleci/python@sha256:e1c98a85c5ee62ac52a2779fe5abe2677f021c8e3158e4fb2d569c7b9c6ac073
+      - image: circleci/python:3.8.5-node-browsers
       - image: ehrbaseorg/ehrbase-postgres:10
         environment:
           POSTGRES_USER: postgres
