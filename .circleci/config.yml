@@ -48,6 +48,7 @@ workflows:
           context: org-global
           requires:
             - build-EHRbase
+            - QUERYSERVICE-tests-1
           filters:
             branches:
               ignore:
@@ -59,6 +60,7 @@ workflows:
           context: org-global
           requires:
             - build-EHRbase
+            - QUERYSERVICE-tests-1
           filters:
             branches:
               ignore:
@@ -70,6 +72,7 @@ workflows:
           context: org-global
           requires:
             - build-EHRbase
+            - QUERYSERVICE-tests-1
           filters:
             branches:
               ignore:
@@ -81,6 +84,7 @@ workflows:
           context: org-global
           requires:
             - build-EHRbase
+            - QUERYSERVICE-tests-1
           filters:
             branches:
               ignore:
@@ -92,6 +96,7 @@ workflows:
           context: org-global
           requires:
             - build-EHRbase
+            - QUERYSERVICE-tests-1
           filters:
             branches:
               ignore:
@@ -103,6 +108,7 @@ workflows:
           context: org-global
           requires:
             - build-EHRbase
+            - QUERYSERVICE-tests-1
           filters:
             branches:
               ignore:
@@ -114,6 +120,7 @@ workflows:
           context: org-global
           requires:
             - build-EHRbase
+            - QUERYSERVICE-tests-1
           filters:
             branches:
               ignore:
@@ -125,6 +132,7 @@ workflows:
           context: org-global
           requires:
             - build-EHRbase
+            - QUERYSERVICE-tests-1
           filters:
             branches:
               ignore:
@@ -136,6 +144,7 @@ workflows:
           context: org-global
           requires:
             - build-EHRbase
+            - QUERYSERVICE-tests-1
           filters:
             branches:
               ignore:
