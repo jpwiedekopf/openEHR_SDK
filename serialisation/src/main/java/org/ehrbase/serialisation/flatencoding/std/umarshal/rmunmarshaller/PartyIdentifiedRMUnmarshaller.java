@@ -46,6 +46,7 @@ public class PartyIdentifiedRMUnmarshaller extends AbstractRMUnmarshaller<PartyI
       Context<Map<String, String>> context) {
     setValue(currentTerm, "name", currentValues, rmObject::setName, String.class);
     rmObject.setExternalRef(new PartyRef());
+    rmObject.getExternalRef().setType("PARTY");
     rmObject.getExternalRef().setId(new GenericId());
     setValue(
         currentTerm,
