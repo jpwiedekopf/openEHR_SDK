@@ -23,7 +23,7 @@
     <groupId>com.github.ehrbase.openEHR_SDK</groupId>
     <artifactId>root</artifactId>
     <packaging>pom</packaging>
-    <version>1.5.0</version>
+    <version>1.5.0-fix-serialization</version>
 
     <modules>
         <module>client</module>
@@ -54,9 +54,9 @@
         <archie.version>1.0.3</archie.version>
         <web-template-tests.version>8f3381a37d</web-template-tests.version>
 
-        <skipIntegrationTests>true</skipIntegrationTests>
+        <skipIntegrationTests>true</skipIntegrationTests><!--
         <include.tests>**/*Test.java</include.tests>
-        <test.profile>unit</test.profile>
+        <test.profile>unit</test.profile>-->
     </properties>
 
 
