@@ -18,16 +18,43 @@
 package org.ehrbase.client.openehrclient;
 
 import java.net.URI;
+
+import org.apache.http.HttpHeaders;
+import org.apache.http.client.fluent.Request;
 import org.ehrbase.client.flattener.DefaultValuesProvider;
+import org.ehrbase.client.openehrclient.authentication.AuthorizationCredential;
+import org.ehrbase.client.openehrclient.authentication.BasicAuthorizationCredential;
+import org.ehrbase.client.openehrclient.authentication.BearerAuthorizationCredential;
 
 public class OpenEhrClientConfig {
 
   private final URI baseUri;
+  private final AuthorizationType authorizationType;
+  private final AuthorizationCredential authorizationCredential;
   private CompositionFormat compositionFormat = CompositionFormat.JSON;
   private DefaultValuesProvider defaultValuesProvider;
 
   public OpenEhrClientConfig(URI baseUri) {
     this.baseUri = baseUri;
+    this.authorizationType = AuthorizationType.NONE;
+    this.authorizationCredential = null;
+  }
+
+  public OpenEhrClientConfig(URI baseUri, AuthorizationType authorizationType, AuthorizationCredential authorizationCredential) {
+    this.baseUri = baseUri;
+    switch (authorizationType) {
+      case NONE:
+        if (authorizationCredential != null) throw new IllegalArgumentException("When using NONE authorization, don't provide a credential");
+        break;
+      case BASIC:
+        if (!(authorizationCredential instanceof BasicAuthorizationCredential)) throw new IllegalArgumentException("Provide a BasicAuthorizationCredential for BASIC");
+        break; //condition also catches null instances
+      case OAUTH2:
+        if (!(authorizationCredential instanceof BearerAuthorizationCredential)) throw new IllegalArgumentException("Provide a BearerAuthorizationCredential for OAUTH2");
+        break;
+    }
+    this.authorizationType = authorizationType;
+    this.authorizationCredential = authorizationCredential;
   }
 
   public URI getBaseUri() {
@@ -48,5 +75,16 @@ public class OpenEhrClientConfig {
 
   public void setDefaultValuesProvider(DefaultValuesProvider defaultValuesProvider) {
     this.defaultValuesProvider = defaultValuesProvider;
+  }
+
+  public void addAuthorizationHeader(Request request) {
+    if (this.authorizationType == AuthorizationType.NONE) return;
+    if (this.authorizationCredential != null)
+      request.addHeader(HttpHeaders.AUTHORIZATION, authorizationCredential.getUserAuthorizationHeader());
+    else throw new IllegalStateException("No authorizationCredential was set.");
+  }
+
+  public enum AuthorizationType {
+    NONE, BASIC, OAUTH2
   }
 }

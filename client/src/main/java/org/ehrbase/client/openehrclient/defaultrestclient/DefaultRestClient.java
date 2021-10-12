@@ -163,6 +163,7 @@ public class DefaultRestClient implements OpenEhrClient {
       if (headers != null) {
         headers.forEach(request::addHeader);
       }
+      config.addAuthorizationHeader(request);
       response = executor.execute(request).returnResponse();
       checkStatus(response, HttpStatus.SC_OK, HttpStatus.SC_CREATED, HttpStatus.SC_NO_CONTENT);
     } catch (IOException e) {
@@ -186,6 +187,7 @@ public class DefaultRestClient implements OpenEhrClient {
       if (headers != null) {
         headers.forEach(request::addHeader);
       }
+      config.addAuthorizationHeader(request);
       HttpResponse response = executor.execute(request).returnResponse();
       checkStatus(
           response, HttpStatus.SC_OK, HttpStatus.SC_NO_CONTENT, HttpStatus.SC_PRECONDITION_FAILED);
@@ -225,7 +227,8 @@ public class DefaultRestClient implements OpenEhrClient {
       if (headers != null) {
         headers.forEach(request::addHeader);
       }
-
+      config.addAuthorizationHeader(request);
+      
       response = executor.execute(request).returnResponse();
       checkStatus(response, HttpStatus.SC_OK, HttpStatus.SC_NO_CONTENT, HttpStatus.SC_NOT_FOUND);
 
@@ -249,6 +252,7 @@ public class DefaultRestClient implements OpenEhrClient {
       if (headers != null) {
         headers.forEach(request::addHeader);
       }
+      config.addAuthorizationHeader(request);
 
       response = executor.execute(request).returnResponse();
       checkStatus(
